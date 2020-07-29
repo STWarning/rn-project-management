@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import AppIcons from '../widgets/AppIcon';
 
 export default function Header({ scene, previous, navigation }) {
+  console.log({route: scene.route})
   const { options } = scene.descriptor;
   const title = options.headerTitle !== undefined
     ? options.headerTitle
@@ -11,30 +12,28 @@ export default function Header({ scene, previous, navigation }) {
       ? options.title
       : scene.route.name;
 
-
   return (
     <Appbar.Header
       style={{ backgroundColor: "transparent" }}
-    // theme={{ colors: { primary: theme.colors.surface } }}
     >
       {previous ? (
         <Appbar.BackAction
-          onPress={navigation.pop}
-        // color={theme.colors.primary}
+          onPress={() => navigation.pop()}
         />) : (
           <TouchableOpacity
+            style={{ marginTop: 20, marginLeft: 10 }}
             onPress={() => navigation.openDrawer()}
           >
-            <AppIcons name="home" />
+            <AppIcons name="home" size={28}/>
           </TouchableOpacity>
         )
       }
       <Appbar.Content
-        style={{ backgroundColor: 'transparent' }}
-        title="My Project"
-        subtitle="26 May. 2019"
-        titleStyle={{ color: "#FFFFFF", fontSize: 16 }}
-        subtitleStyle={{ color: "#FFFFFF", fontSize: 13 }}
+        style={{ backgroundColor: 'transparent', marginTop: 20 }}
+        title={title}
+        subtitle={options.subtitle}
+        titleStyle={{ color: "#F0FDFE", fontSize: 20, fontWeight: 'bold' }}
+        subtitleStyle={{ color: "#F0FDFE", fontSize: 13 }}
       />
 
     </Appbar.Header>

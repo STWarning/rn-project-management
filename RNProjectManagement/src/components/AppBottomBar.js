@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 
 export default function AppBottomBar({ state, descriptors, navigation }) {
 
@@ -9,8 +9,8 @@ export default function AppBottomBar({ state, descriptors, navigation }) {
     return null;
   }
   return (
-    <View style={{ flexDirection: 'row', backgroundColor: 'transparent', height: 120, alignItems: 'flex-end' }}>
-      <View style={{ width: '100%', position: 'absolute', backgroundColor: '#90A5EB', bottom: 0, height: 64 }} />
+    <View style={BottomBarStyle.container}>
+      <View style={BottomBarStyle.fakeBackground} />
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label = options.tabBarLabel !== undefined
@@ -40,31 +40,15 @@ export default function AppBottomBar({ state, descriptors, navigation }) {
         const tabType = options.tabType || "normal";
         return (
           <TouchableWithoutFeedback
+            key={index}
             accessibilityRole='button'
             accessibilityStates={isFocused ? ['selected'] : []}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-
           >
-            <View style={tabType === 'large' ? {
-              alignItems: 'center',
-              bottom: 24,
-              width: 64,
-              height: 64,
-              position: 'relative',
-              justifyContent: 'center',
-              backgroundColor: "#EEF1FC",
-              borderRadius: 32,
-              elevation: 8
-            } : {
-                flex: 1,
-                height: 64,
-                backgroundColor: 'transparent',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}>
+            <View style={tabType === 'large' ? BottomBarStyle.largeIcon : BottomBarStyle.normalIcon}>
               <TabBarIcon
                 focused={isFocused}
                 tintColor={iconColor}
@@ -81,4 +65,37 @@ export default function AppBottomBar({ state, descriptors, navigation }) {
     </View>
   )
 }
+
+const BottomBarStyle = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    alignItems: 'flex-end'
+  },
+  largeIcon: {
+    alignItems: 'center',
+    bottom: 24,
+    width: 64,
+    height: 64,
+    position: 'relative',
+    justifyContent: 'center',
+    backgroundColor: "#EEF1FC",
+    borderRadius: 32,
+    elevation: 8
+  },
+  normalIcon: {
+    flex: 1,
+    height: 64,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  fakeBackground: {
+    width: '100%',
+    position: 'absolute',
+    backgroundColor: '#90A5EB',
+    bottom: 0,
+    height: 64
+  },
+});
 
