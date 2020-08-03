@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { View, StyleSheet, FlatList, Dimensions } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Dimensions,
+  Pressable,
+} from 'react-native';
 import { Text, Avatar } from 'react-native-paper';
 import { Color } from '../../config';
 
@@ -9,44 +15,44 @@ const projects = [
     time: 'Tuesday, 10:35 AM',
     users: [
       {
-        name: "An",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
       {
-        name: "An2",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An2',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
       {
-        name: "An3",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An3',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
-    ]
+    ],
   },
   {
     name: 'Product Report',
     time: 'Tuesday, 10:35 AM',
     users: [
       {
-        name: "An",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
       {
-        name: "An2",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An2',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
       {
-        name: "An3",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An3',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
-    ]
+    ],
   },
   {
     name: 'Product Report 1',
     time: 'Tuesday, 10:35 AM',
     users: [
       {
-        name: "An",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
     ],
   },
@@ -55,8 +61,8 @@ const projects = [
     time: 'Tuesday, 10:35 AM',
     users: [
       {
-        name: "An",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
     ],
   },
@@ -65,8 +71,8 @@ const projects = [
     time: 'Tuesday, 10:35 AM',
     users: [
       {
-        name: "An",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
     ],
   },
@@ -75,65 +81,90 @@ const projects = [
     time: 'Tuesday, 10:35 AM',
     users: [
       {
-        name: "An",
-        avatar: require('../../assets/images/avatar_1.png')
+        name: 'An',
+        avatar: require('../../assets/images/avatar_1.png'),
       },
     ],
-  }
-]
+  },
+];
 
 const windowWidth = Dimensions.get('window').width;
 const separatorWidth = 20;
 const cardWidth = windowWidth * 0.7;
 const cardWidthFull = cardWidth + separatorWidth;
 
-export default function ProjectList() {
-
+export default function ProjectList({ onProjectPressed }) {
   const [page, setPage] = React.useState(0);
 
   const onScroll = ({ nativeEvent }) => {
     const currentPage = Math.round(nativeEvent.contentOffset.x / cardWidthFull);
     setPage(currentPage);
-  }
+  };
 
   const renderProjectCard = ({ item, index }) => {
     const isCurrentPage = page === index;
     return (
-      <View style={{ justifyContent: 'center', height: 170, alignItems: 'flex-start' }}>
-        <View style={[ProjectListStyle.projectCard, isCurrentPage && {
-          height: 150,
-          shadowColor: '#000000',
-          shadowOffset: {
-            width: 0,
-            height: 3
-          },
-          shadowRadius: 5,
-          shadowOpacity: 1.0,
-          elevation: 8,
-        }
-        ]}>
+      <View
+        style={{
+          justifyContent: 'center',
+          height: 170,
+          alignItems: 'flex-start',
+        }}>
+        <Pressable
+          onPress={() => onProjectPressed(item)}
+          style={[
+            ProjectListStyle.projectCard,
+            isCurrentPage && {
+              height: 150,
+              shadowColor: '#000000',
+              shadowOffset: {
+                width: 0,
+                height: 3,
+              },
+              shadowRadius: 5,
+              shadowOpacity: 1.0,
+              elevation: 8,
+            },
+          ]}>
           <View style={ProjectListStyle.projectIndexContainer}>
             <Text style={ProjectListStyle.total}>{index}</Text>
           </View>
           <View style={ProjectListStyle.projectInfo}>
-            <Text style={[ProjectListStyle.projectName, isCurrentPage && { fontSize: 18, fontWeight: 'bold' }]}>{item.name}</Text>
+            <Text
+              style={[
+                ProjectListStyle.projectName,
+                isCurrentPage && { fontSize: 18, fontWeight: 'bold' },
+              ]}>
+              {item.name}
+            </Text>
             <Text style={ProjectListStyle.time}>{item.time}</Text>
           </View>
           <View style={ProjectListStyle.memberContainer}>
-            {item.users && item.users.slice(0, 2).map((user, index) => {
-              console.log(`index ${index}`)
-              return (
-                <Avatar.Image key={user.name} size={24} source={require('../../assets/images/avatar_1.png')} />
-              )
-            })}
-            {item.users && item.users.length > 2
-              && <Avatar.Text style={{ backgroundColor: '#FFF' }} labelStyle={{ color: '#728DE4', fontWeight: '700' }} size={24} label={`${item.users.length - 2}+`} />}
+            {item.users &&
+              item.users.slice(0, 2).map((user, index) => {
+                console.log(`index ${index}`);
+                return (
+                  <Avatar.Image
+                    key={user.name}
+                    size={24}
+                    source={require('../../assets/images/avatar_1.png')}
+                  />
+                );
+              })}
+            {item.users && item.users.length > 2 && (
+              <Avatar.Text
+                style={{ backgroundColor: '#FFF' }}
+                labelStyle={{ color: '#728DE4', fontWeight: '700' }}
+                size={24}
+                label={`${item.users.length - 2}+`}
+              />
+            )}
             <Text style={ProjectListStyle.workingWith}>Working with</Text>
           </View>
-        </View>
+        </Pressable>
       </View>
-    )
-  }
+    );
+  };
 
   return (
     <View style={ProjectListStyle.container}>
@@ -148,7 +179,7 @@ export default function ProjectList() {
         overScrollMode="never"
         style={ProjectListStyle.cardListContainer}
         contentContainerStyle={{ paddingHorizontal: 10 }}
-        snapToAlignment='center'
+        snapToAlignment="center"
         snapToInterval={cardWidthFull}
         pagingEnabled
         ItemSeparatorComponent={() => (
@@ -156,7 +187,7 @@ export default function ProjectList() {
         )}
         onScroll={onScroll}
         horizontal
-        decelerationRate='fast'
+        decelerationRate="fast"
         data={projects}
         renderItem={renderProjectCard}
         keyExtractor={(item) => item.name}
@@ -171,7 +202,7 @@ const ProjectListStyle = StyleSheet.create({
   },
   titleContainer: {
     marginTop: 10,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   ongoing: {
     fontSize: 20,
@@ -185,7 +216,7 @@ const ProjectListStyle = StyleSheet.create({
     marginLeft: 10,
     justifyContent: 'center',
     borderRadius: 4,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   total: {
     fontSize: 12,
@@ -208,12 +239,12 @@ const ProjectListStyle = StyleSheet.create({
   projectInfo: {
     marginLeft: 20,
     justifyContent: 'flex-start',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   projectName: {
     color: Color.white,
     fontSize: 16,
-    fontWeight: '600'
+    fontWeight: '600',
   },
   time: {
     color: Color.white,
@@ -227,7 +258,7 @@ const ProjectListStyle = StyleSheet.create({
     backgroundColor: '#BDCAF480',
     justifyContent: 'center',
     borderRadius: 4,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   memberContainer: {
     flexDirection: 'row',
@@ -241,12 +272,11 @@ const ProjectListStyle = StyleSheet.create({
     borderBottomStartRadius: 18,
     borderBottomEndRadius: 18,
     position: 'relative',
-    bottom: 0
+    bottom: 0,
   },
   workingWith: {
     color: '#F1F5FE90',
     marginLeft: 10,
     fontSize: 11,
-  }
-})
-
+  },
+});

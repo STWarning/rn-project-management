@@ -4,6 +4,4 @@ function convertToDateFormat(timestamp, dateFormat) {
   return moment(timestamp).format(dateFormat);
 }
 
-export {
-  convertToDateFormat,
-}
+export { convertToDateFormat };

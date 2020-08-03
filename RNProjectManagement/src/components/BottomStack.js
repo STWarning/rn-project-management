@@ -12,11 +12,9 @@ import { Avatar } from 'react-native-paper';
 const BottomTab = createBottomTabNavigator();
 
 export default function BottomStack() {
-
-  const defaultActiveColor = "#EEF1FC";
-  const defaultInActiveColor = "#BDCAF4";
+  const defaultActiveColor = '#EEF1FC';
+  const defaultInActiveColor = '#BDCAF4';
   const defaultIconSize = 24;
-
 
   function renderIcons({
     tintColor,
@@ -24,39 +22,44 @@ export default function BottomStack() {
     name,
     size = defaultIconSize,
     activeColor = defaultActiveColor,
-    inActiveColor = defaultInActiveColor
+    inActiveColor = defaultInActiveColor,
   }) {
     return (
-      <AppIcons name={name} size={size} color={focused ? activeColor : inActiveColor} />
-    )
+      <AppIcons
+        name={name}
+        size={size}
+        color={focused ? activeColor : inActiveColor}
+      />
+    );
   }
 
   return (
     <BottomTab.Navigator
-      tabBar={props => <AppBottomBar {...props} />}
+      tabBar={(props) => <AppBottomBar {...props} />}
       initialRouteName="Home"
-      tabBarOptions={{ showLabel: false }}
-    >
+      tabBarOptions={{ showLabel: false }}>
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ tintColor, focused }) => renderIcons({
-            tintColor,
-            focused,
-            name: 'home',
-          })
+          tabBarIcon: ({ tintColor, focused }) =>
+            renderIcons({
+              tintColor,
+              focused,
+              name: 'home',
+            }),
         }}
       />
       <BottomTab.Screen
         name="Chat"
         component={ChatScreen}
         options={{
-          tabBarIcon: ({ tintColor, focused }) => renderIcons({
-            tintColor,
-            focused,
-            name: 'chat',
-          })
+          tabBarIcon: ({ tintColor, focused }) =>
+            renderIcons({
+              tintColor,
+              focused,
+              name: 'chat',
+            }),
         }}
       />
       <BottomTab.Screen
@@ -66,15 +69,15 @@ export default function BottomStack() {
           tabType: 'large',
           tabBarIcon: ({ tintColor, focused }) => (
             <Avatar.Text
-            size={80}
-              label='+'
-              style={{ backgroundColor: 'transparent', paddingBottom: 4,}}
+              size={80}
+              label="+"
+              style={{ backgroundColor: 'transparent', paddingBottom: 4 }}
               labelStyle={{
                 fontSize: 48,
-                color: focused ? '#5A79EC' : '#BDCAF4'
-              }} />
-          )
-
+                color: focused ? '#5A79EC' : '#BDCAF4',
+              }}
+            />
+          ),
 
           // renderIcons({
           //     tintColor,
@@ -90,23 +93,26 @@ export default function BottomStack() {
         name="Calendar"
         component={CalendarScreen}
         options={{
-          tabBarIcon: ({ tintColor, focused }) => renderIcons({
-            tintColor,
-            focused,
-            name: 'calendar',
-          })
+          tabBarIcon: ({ tintColor, focused }) =>
+            renderIcons({
+              tintColor,
+              focused,
+              name: 'calendar',
+            }),
         }}
       />
-      <BottomTab.Screen name="Profile" component={ProfileScreen}
+      <BottomTab.Screen
+        name="Profile"
+        component={ProfileScreen}
         options={{
-          tabBarIcon: ({ tintColor, focused }) => renderIcons({
-            tintColor,
-            focused,
-            name: 'user',
-          })
-        }} />
-
+          tabBarIcon: ({ tintColor, focused }) =>
+            renderIcons({
+              tintColor,
+              focused,
+              name: 'user',
+            }),
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
-

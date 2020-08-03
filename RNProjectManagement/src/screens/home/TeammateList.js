@@ -7,23 +7,26 @@ import { Color } from '../../config';
 const teammates = [
   {
     name: 'An',
-    avatar: require('../../assets/images/avatar_1.png')
+    avatar: require('../../assets/images/avatar_1.png'),
   },
   {
     name: 'An1',
-    avatar: require('../../assets/images/avatar_1.png')
+    avatar: require('../../assets/images/avatar_1.png'),
   },
   {
     name: 'An2',
-    avatar: require('../../assets/images/avatar_1.png')
-  }
-]
+    avatar: require('../../assets/images/avatar_1.png'),
+  },
+];
 export default function TeammateList() {
-
   const renderTeammate = ({ item }) => {
     return (
       <View style={styles.teammateContainer}>
-        <Avatar.Image style={styles.teammateAvatar} size={36} source={item.avatar} />
+        <Avatar.Image
+          style={styles.teammateAvatar}
+          size={36}
+          source={item.avatar}
+        />
         <Text style={styles.teammateName}>{item.name}</Text>
       </View>
     );
@@ -33,8 +36,8 @@ export default function TeammateList() {
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>My teammates</Text>
-        <Pressable onPress={() => alert('Add Teammate')} >
-          <View style={styles.add} >
+        <Pressable onPress={() => alert('Add Teammate')}>
+          <View style={styles.add}>
             <AppIcons size={13} name="user-plus" />
           </View>
         </Pressable>
@@ -52,25 +55,23 @@ export default function TeammateList() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-
-  },
+  container: {},
   titleContainer: {
     marginLeft: 15,
     marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   title: {
     color: '#E9F5FE',
     fontSize: 14,
-    fontWeight: '700'
+    fontWeight: '700',
   },
   teammateContainer: {
     marginHorizontal: 10,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   teammateName: {
     fontSize: 14,
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     color: Color.white,
   },
   teammateAvatar: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   add: {
     height: 26,
@@ -88,6 +89,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#5579F8'
+    backgroundColor: '#5579F8',
   },
 });
