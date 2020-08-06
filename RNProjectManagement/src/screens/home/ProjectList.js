@@ -13,6 +13,10 @@ const projects = [
   {
     name: 'Ui Progress Meeting',
     time: 'Tuesday, 10:35 AM',
+    author: {
+      id: 1,
+      name: 'An',
+    },
     users: [
       {
         name: 'An',
@@ -31,6 +35,10 @@ const projects = [
   {
     name: 'Product Report',
     time: 'Tuesday, 10:35 AM',
+    author: {
+      id: 1,
+      name: 'An',
+    },
     users: [
       {
         name: 'An',
@@ -49,6 +57,10 @@ const projects = [
   {
     name: 'Product Report 1',
     time: 'Tuesday, 10:35 AM',
+    author: {
+      id: 1,
+      name: 'An',
+    },
     users: [
       {
         name: 'An',
@@ -59,6 +71,10 @@ const projects = [
   {
     name: 'Product Report 2',
     time: 'Tuesday, 10:35 AM',
+    author: {
+      id: 1,
+      name: 'An',
+    },
     users: [
       {
         name: 'An',
@@ -69,6 +85,10 @@ const projects = [
   {
     name: 'Product Report 3',
     time: 'Tuesday, 10:35 AM',
+    author: {
+      id: 1,
+      name: 'An',
+    },
     users: [
       {
         name: 'An',
@@ -79,6 +99,10 @@ const projects = [
   {
     name: 'Product Report 4',
     time: 'Tuesday, 10:35 AM',
+    author: {
+      id: 1,
+      name: 'An',
+    },
     users: [
       {
         name: 'An',

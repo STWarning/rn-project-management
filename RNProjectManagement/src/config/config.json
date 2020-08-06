@@ -35,6 +35,36 @@
       "css": "user-plus",
       "code": 62004,
       "src": "fontawesome"
+    },
+    {
+      "uid": "c759418c008e9562944080fee617fc76",
+      "css": "cancel-circled",
+      "code": 59396,
+      "src": "entypo"
+    },
+    {
+      "uid": "85017ab6ca074831a8de771b40e9640c",
+      "css": "camera",
+      "code": 59397,
+      "src": "entypo"
+    },
+    {
+      "uid": "f4f0e849b805be1f6d76b65581cb3b8b",
+      "css": "drawer",
+      "code": 59399,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "242giivkgr3e6le7b2xqi2pkdruf85mu",
+      "css": "edit",
+      "code": 59398,
+      "src": "modernpics"
+    },
+    {
+      "uid": "ec3be32c1330a17ef251b378ebd7d3ac",
+      "css": "back",
+      "code": 59400,
+      "src": "typicons"
     }
   ]
 }

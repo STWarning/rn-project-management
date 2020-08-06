@@ -13,7 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import AppIcons from '../../widgets/AppIcon';
 import { Avatar } from 'react-native-paper';
 import ProjectList from './ProjectList';
-import TeammateList from './TeammateList';
+import TeammateList from '../../components/MemberList';
 import UpComingProjects from './UpComingProjects';
 import { Color } from '../../config';
 import AppBackground from '../../components/AppBackground';
@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation }) {
     return (
       <View style={HomeScreenStyle.headerContainer}>
         <Pressable onPress={() => console.log('open drawer')}>
-          <AppIcons name="home" size={28} color={Color.white} />
+          <AppIcons name="drawer" size={28} color={Color.white} />
         </Pressable>
         <View style={HomeScreenStyle.titleContainer}>
           <Text style={HomeScreenStyle.title}>My Project</Text>
@@ -42,7 +42,7 @@ export default function HomeScreen({ navigation }) {
   }
 
   return (
-    <AppBackground style={{ flex: 1 }}>
+    <AppBackground>
       <View style={HomeScreenStyle.container}>
         {renderHeader()}
         <ScrollView>
@@ -54,7 +54,11 @@ export default function HomeScreen({ navigation }) {
                 })
               }
             />
-            <TeammateList />
+            <TeammateList
+              style={{ marginTop: 20 }}
+              title={'My teammates'}
+              onAddPressed={() => alert('Add member')}
+            />
             <UpComingProjects />
             <View style={{ height: 30 }} />
           </View>

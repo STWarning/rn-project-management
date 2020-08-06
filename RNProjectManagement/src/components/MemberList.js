@@ -1,30 +1,30 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, FlatList, Pressable } from 'react-native';
 import { Avatar } from 'react-native-paper';
-import AppIcons from '../../widgets/AppIcon';
-import { Color } from '../../config';
+import AppIcons from '../widgets/AppIcon';
+import { Color } from '../config';
 
 const teammates = [
   {
     name: 'An',
-    avatar: require('../../assets/images/avatar_1.png'),
+    avatar: require('../assets/images/avatar_1.png'),
   },
   {
     name: 'An1',
-    avatar: require('../../assets/images/avatar_1.png'),
+    avatar: require('../assets/images/avatar_1.png'),
   },
   {
     name: 'An2',
-    avatar: require('../../assets/images/avatar_1.png'),
+    avatar: require('../assets/images/avatar_1.png'),
   },
 ];
-export default function TeammateList() {
+export default function MemberList({ style, title, onAddPressed }) {
   const renderTeammate = ({ item }) => {
     return (
       <View style={styles.teammateContainer}>
         <Avatar.Image
           style={styles.teammateAvatar}
-          size={36}
+          size={48}
           source={item.avatar}
         />
         <Text style={styles.teammateName}>{item.name}</Text>
@@ -33,10 +33,10 @@ export default function TeammateList() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>My teammates</Text>
-        <Pressable onPress={() => alert('Add Teammate')}>
+        <Text style={styles.title}>{title}</Text>
+        <Pressable onPress={() => onAddPressed()}>
           <View style={styles.add}>
             <AppIcons size={13} name="user-plus" />
           </View>
@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
   container: {},
   titleContainer: {
     marginLeft: 15,
-    marginTop: 20,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
